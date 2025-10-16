@@ -1,0 +1,234 @@
+{
+  "info": {
+    "name": "Parking Management System API Tests",
+    "description": "End-to-end API test collection with sample cURL commands",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Vehicles",
+      "item": [
+        {
+          "name": "Create Vehicle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Basic YWRtaW46cGFzc3dvcmQ="
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"licensePlate\": \"ABC123\", \"ownerName\": \"aniket\", \"vehicleType\": \"CAR\"}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/vehicles/create",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api","vehicles","create"]
+            }
+          }
+        },
+        {
+          "name": "Get Vehicle by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic YWRtaW46cGFzc3dvcmQ="
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/vehicles/{{VEHICLE_ID}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api","vehicles","{{VEHICLE_ID}}"]
+            }
+          }
+        },
+        {
+          "name": "Get All Vehicles",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic YWRtaW46cGFzc3dvcmQ="
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/vehicles",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api","vehicles"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Parking Slots",
+      "item": [
+        {
+          "name": "Create Slot",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Basic YWRtaW46cGFzc3dvcmQ="
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"slotNumber\": \"A1\", \"slotType\": \"CAR\"}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/slots",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api","slots"]
+            }
+          }
+        },
+        {
+          "name": "List All Slots",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic YWRtaW46cGFzc3dvcmQ="
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/slots",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api","slots"]
+            }
+          }
+        },
+        {
+          "name": "List Available Slots",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic YWRtaW46cGFzc3dvcmQ="
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/slots?isAvailable=true",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api","slots"],
+              "query": [
+                {
+                  "key": "isAvailable",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Parking Tickets",
+      "item": [
+        {
+          "name": "Park Vehicle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic YWRtaW46cGFzc3dvcmQ="
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/park?vehicleId={{VEHICLE_ID}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api","park"],
+              "query": [
+                {
+                  "key": "vehicleId",
+                  "value": "{{VEHICLE_ID}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Unpark Vehicle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic YWRtaW46cGFzc3dvcmQ="
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/unpark/{{TICKET_ID}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api","unpark","{{TICKET_ID}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Ticket by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic YWRtaW46cGFzc3dvcmQ="
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/tickets/{{TICKET_ID}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api","tickets","{{TICKET_ID}}"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "VEHICLE_ID",
+      "value": ""
+    },
+    {
+      "key": "TICKET_ID",
+      "value": ""
+    }
+  ]
+}

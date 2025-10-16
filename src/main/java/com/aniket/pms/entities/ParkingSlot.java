@@ -1,0 +1,31 @@
+package com.aniket.pms.entities;
+
+import com.aniket.pms.enums.VehicleType;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.UUID;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ParkingSlot {
+    @Id
+    @GeneratedValue
+    private UUID id;
+
+    @Column(unique = true, nullable = false)
+    private String slotNumber;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private VehicleType slotType;
+
+    private boolean isAvailable = true;
+
+    @OneToOne(mappedBy = "slot")
+    private ParkingTicket parkingTicket;
+}
